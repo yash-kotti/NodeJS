@@ -44,13 +44,16 @@ app.get("/about", (req, res) => {
   return res.send("In the about page");
 });
 app.get("/", (req, res) => {
-  return res.send("In the home page");
+  return res.send(`In the home page ${req.query.name}`);
 });
-const myserver = http.createServer(myHandler);
+app.listen(8000, () => {
+  console.log("Server running on port 8000");
+});
+// const myserver = http.createServer(app);
 
 // We have created a server now we would have to run it
 // for that we would choose the port on which it sholud be run
 // IT will clg on the console of the server.
-myserver.listen(8000, () => {
-  console.log("Server running on port 8000");
-});
+// myserver.listen(8000, () => {
+//   console.log("Server running on port 8000");
+// });
