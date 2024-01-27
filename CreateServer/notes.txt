@@ -1,0 +1,13 @@
+HTTP METHODS : 
+
+GET : to get the data from the server
+POST : To send the data from client to server. IT will take the data from it and use it in the server
+PUT : If we want to upload the data in the server. Update or replace the existing data. Adding new user in DB
+
+PATCH : If we want to update data such as changing name in DB 
+DELETE : To delete the data in the DB.
+
+Express will write the myhandler function in the create server
+
+and we can easily get all the Request
+
