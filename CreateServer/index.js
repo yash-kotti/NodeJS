@@ -3,6 +3,7 @@ const fs = require("fs");
 const url = require("url");
 const express = require("express");
 const app = express();
+// Use it as we want
 // For creating a server we would use createServer in it we have a callback function
 // Which will give the req and res
 // req will be the request by the client and had all the info about it.
