@@ -27,8 +27,8 @@ app.use(cookieParser());
 
 app.use("/url", restrictToLoggedInUser, urlRoute); // WE have added a middleware here to restrict the user to go the /url page without login.
 // app.use("/url/:shortid", urlRoute);
-app.use("/", checkAuth, staticRoute);
 app.use("/user", userRoute); //For backend purpose such as when we pass the data from form to server.
+app.use("/", checkAuth, staticRoute);
 
 // app.get("/test", async (req, res) => {
 //   const allUrls = await URL.find({});
