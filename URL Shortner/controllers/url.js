@@ -13,6 +13,7 @@ async function handleGenerateShortURL(req, res) {
     shortId: shortIdGen,
     redirectURL: body.url,
     visitHistory: [],
+    createdBy: req.user._id,
   });
   res.render("Home", { id: shortIdGen });
   // res.json({ id: shortIdGen });
@@ -32,7 +33,7 @@ async function handleGetURL(req, res) {
     }
   ); // This fn will find the DOM with id and update the visithistory in it and return the document in the entry
   // The name in the id should be same as you want to search.
-  console.log(entry);
+  // console.log(entry);
   res.redirect(entry.redirectURL);
 }
 

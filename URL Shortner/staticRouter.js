@@ -4,7 +4,11 @@ const userModel = require("./models/users");
 const route = express.Router();
 
 route.get("/", async (req, res) => {
-  const allUrls = await URL.find({});
+  if (!req.user) return res.redirect("/login");
+  const allUrls = await URL.find({
+    createdBy: req.user._id,
+  });
+  // const allUrls = await URL.find({});
   // console.log(allUrls);
   console.log("Inside Static Router");
   res.render("Home", { urls: allUrls });
