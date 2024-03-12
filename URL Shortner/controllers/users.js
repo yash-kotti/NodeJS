@@ -25,11 +25,11 @@ async function handleLogin(req, res) {
   console.log("Inside Login");
   // const sessionId = uuidv4();
   const token = setUser(user);
-  console.log("TOken " + token);
-  // res.cookie("uid", token);
-  // res.render("Home", { user: user });
-  res.json({ token });
-  // res.redirect("/");
+  // console.log("Token " + token);
+  res.cookie("token", token);
+  // res.render("/", { user: user });
+  // res.json({ token });
+  res.redirect("/");
 }
 
 module.exports = { handleSignUp, handleLogin };

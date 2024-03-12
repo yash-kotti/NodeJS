@@ -3,7 +3,12 @@ const { connectMongoDB } = require("./connect");
 const app = express();
 const path = require("path");
 const URL = require("./models/url");
-const { restrictToLoggedInUser, checkAuth } = require("./middleware/auth");
+const {
+  restrictToLoggedInUser,
+  checkAuth,
+  checkForAuthentication,
+  restrictTo,
+} = require("./middleware/auth");
 const cookieParser = require("cookie-parser");
 const PORT = 8000;
 
@@ -25,10 +30,11 @@ app.use(express.urlencoded({ extended: false })); // For encoded URL's
 app.use(express.json()); // For JSON
 app.use(cookieParser());
 
-app.use("/url", restrictToLoggedInUser, urlRoute); // WE have added a middleware here to restrict the user to go the /url page without login.
+app.use(checkForAuthentication);
+app.use("/url", restrictTo(["NORMAL"]), urlRoute); // WE have added a middleware here to restrict the user to go the /url page without login.
 // app.use("/url/:shortid", urlRoute);
 app.use("/user", userRoute); //For backend purpose such as when we pass the data from form to server.
-app.use("/", checkAuth, staticRoute);
+app.use("/", staticRoute);
 
 // app.get("/test", async (req, res) => {
 //   const allUrls = await URL.find({});
