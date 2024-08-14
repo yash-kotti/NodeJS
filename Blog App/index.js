@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const {
   checkForAuthenticationCookie,
 } = require("./middlewares/authentication");
+const Blog = require("./models/blog");
 const PORT = 8000;
 
 mongoose
@@ -25,9 +26,12 @@ app.set("views", path.resolve("./views"));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("Token"));
+app.use(express.static(path.resolve("./public")));
 
-app.get("/", (req, res) => {
-  res.render("home", { user: req.user });
+app.get("/", async (req, res) => {
+  const allBlogs = await Blog.find({});
+
+  res.render("home", { user: req.user, blogs: allBlogs });
 });
 
 app.use("/user", userRoute);
