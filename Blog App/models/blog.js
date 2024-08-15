@@ -1,5 +1,4 @@
-const { Schema, model, default: mongoose } = require("mongoose");
-const { title } = require("process");
+const { Schema, model } = require("mongoose");
 
 const blogSchema = new Schema(
   {
